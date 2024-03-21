@@ -1,0 +1,17 @@
+---
+const lang = Astro.locals.language;
+const domain = Astro.locals.domain;
+const redirect = !lang || !domain;
+console.log(redirect)
+---
+
+{
+  redirect ? (
+    <h1>THIS WILL REDIRECT TO CORPORATIVE WEBSITE</h1>
+  ) : (
+    <>
+      <h1>GENERAL ERORR HANDLER FOR {lang}</h1>
+      <h2>DOMAIN: {domain.name}</h2>
+    </>
+  )
+}
