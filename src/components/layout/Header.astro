@@ -1,23 +1,34 @@
 ---
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../../i18n/utils';
+import LanguagePicker from '../layout/LanguagePicker.astro';
 
-const lang = getLangFromUrl(Astro.url);
+const lang = Astro.locals.language;
+const domain = Astro.locals.domain.url
 const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
 ---
 <ul>
     <li>
-        <a href={`/${lang}/home/`}>
+        <a href={translatePath('/', lang, domain)}>
           {t('nav.home')}
         </a>
     </li>
     <li>
-        <a href={`/${lang}/about/`}>
-          {t('nav.about')}
-        </a>
+      <a href={translatePath('/deals', lang, domain)}>
+        {t('nav.deals')}
+      </a>
+    </li>
+    <li>
+      <a href={translatePath('/deals/categories', lang, domain)}>
+        {t('nav.categories')}
+      </a>
     </li>
     <li>
         <a href="https://twitter.com/astrodotbuild">
           {t('nav.twitter')}
         </a>
     </li>
+    <p>Languages</p>
+    <LanguagePicker />
 </ul>
