@@ -1,0 +1,8 @@
+---
+import { useTranslations } from '../../i18n/utils';
+
+const lang = Astro.locals.language;
+const t = useTranslations(lang);
+---
+<h1>{t('categories.home.title')}</h1>
+<h2>{t('categories.home.subtitle')}</h2>
